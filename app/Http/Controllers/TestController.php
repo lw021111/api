@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use GuzzleHttp\Client;
 class TestController extends Controller
 {
 	public function index(){
@@ -38,6 +38,18 @@ class TestController extends Controller
 		curl_close($ch);
 
 		echo $response;
+    }
+
+    public function getWxToken3(){
+    	$appid="wxdf6c4b67f0287f85";
+    	$appsecret="7f77628443998e589be2f800c4041d65";
+    	$url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
+
+    	$client=new Client();
+    	$response=$client->request('Get',$url);
+    	$data=$response->getBody();
+    	echo $data;
+
     }
 
 

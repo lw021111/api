@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Route::any("/getWxToken","TestController@getWxToken");
 Route::any("/getWxToken2","TestController@getWxToken2");
+Route::any("/getWxToken3","TestController@getWxToken3");
