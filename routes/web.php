@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::any("/getWxToken","TestController@getWxToken");
+Route::any("/getWxToken2","TestController@getWxToken2");
