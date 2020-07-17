@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
+
 class TestController extends Controller
 {
 	public function index(){
@@ -49,7 +51,22 @@ class TestController extends Controller
     	$response=$client->request('Get',$url);
     	$data=$response->getBody();
     	echo $data;
+    }
+    public function getAccessToken(){
+    	$token=Str::random(32);
+    	$data=[
+    		'token'=>$token,
+    		'expire_in'=>7200
+    	];
+    	echo json_encode($data);
+    }
 
+    public function userInfo(){
+    	echo "userinfo";
+    }
+
+    public function test2(){
+    	echo Str::random(30);
     }
 
 
