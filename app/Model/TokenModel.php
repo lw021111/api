@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Login extends Model
+class TokenModel extends Model
 {
-    protected $table="p_user";
-    protected $primaryKey="user_id";
+    protected $table="p_token";
+    protected $primaryKey='id';
     public $timestamps = false;
     protected $guarded = [];//黑名单
 }

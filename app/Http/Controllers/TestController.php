@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redis;
 
 class TestController extends Controller
 {
@@ -69,5 +70,21 @@ class TestController extends Controller
     	echo Str::random(30);
     }
 
+    public function hash1(){
+        $data=[
+            'name'=>'zhangsan',
+            'email'=>'zhangsan@qq.com',
+            'age'=>22
+        ];
+    }
+
+    public function goods(Request $request){
+        $goods_id=$request->get('id');
+        echo "商品ID:".$goods_id;
+    }
+
+    public function test1(){
+        echo __METHOD__;
+    }
 
 }

@@ -21,5 +21,12 @@ Route::any("/getAccessToken","TestController@getAccessToken");
 Route::any("/user/info","TestController@userInfo");
 Route::any("/test2","TestController@test2");
 
-Route::any("/user/reg","LoginController@reg");
-Route::any("/user/login","LoginController@login");
+Route::get("/test/hash1","TestController@hash1");
+
+Route::post("/user/reg","LoginController@reg");
+Route::post("/user/login","LoginController@login");
+Route::get("/user/center","LoginController@center");//个人中心
+
+Route::get("/goods","TestController@goods");
+
+Route::get("/test1","TestController@test1")->middleware('count');
