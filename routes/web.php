@@ -25,8 +25,12 @@ Route::get("/test/hash1","TestController@hash1");
 
 Route::post("/user/reg","LoginController@reg");
 Route::post("/user/login","LoginController@login");
-Route::get("/user/center","LoginController@center");//个人中心
+Route::get("/user/center","LoginController@center")->middleware('verify.token','count');//个人中心
 
 Route::get("/goods","TestController@goods");
 
 Route::get("/test1","TestController@test1")->middleware('count');
+Route::get("/test/aes1","TestController@aes1");
+Route::any('/test/dec','TestController@dec');
+Route::any('/test/rsa1','TestController@rsa1');
+Route::any('/test/sign1','TestController@sign1');

@@ -71,24 +71,7 @@ class LoginController extends Controller
     public function center(Request $request){
         //验证是否有token
         $token=$request->get('token');
-        if(empty($token)){
-            $response=[
-                'errno'=>400003,
-                'msg'=>'未授权'
-            ];
-            return $response;
-        }
-        //验证token是否有效
         $info=TokenModel::where(['token'=>$token])->first();
-     
-        if(empty($info)){
-            $response=[
-                'errno'=>400003,
-                'msg'=>'token无效'
-            ];
-            return $response;
-        }
-
         $user=Login::find($info->uid);
         $response=[
                 'errno'=>0,

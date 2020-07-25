@@ -62,14 +62,6 @@ class TestController extends Controller
     	echo json_encode($data);
     }
 
-    public function userInfo(){
-    	echo "userinfo";
-    }
-
-    public function test2(){
-    	echo Str::random(30);
-    }
-
     public function hash1(){
         $data=[
             'name'=>'zhangsan',
@@ -83,8 +75,66 @@ class TestController extends Controller
         echo "商品ID:".$goods_id;
     }
 
-    public function test1(){
-        echo __METHOD__;
+    public function aes1(){
+        $data='Hello world';
+        $method='AES-256-CBC';
+        $key='1911api';
+        $iv='aaaabbbbccccdddd';
+        echo "原始数据: ".$data;echo "</br>";
+        $enc_data=openssl_encrypt($data, $method, $key,OPENSSL_RAW_DATA,$iv);
+        //echo openssl_error_string();die;
+        echo "加密后的密文: ".$enc_data;echo "</br>";
+        echo '<hr>';
+        //解密
+        $dec_data=openssl_decrypt($enc_data, $method, $key,OPENSSL_RAW_DATA,$iv);
+        echo "解密数据: ".$dec_data;echo "</br>";
     }
+    //对称
+    public function dec(Request $request){
+        $method='AES-256-CBC';
+        $key='1911api';
+        $iv='aaaabbbbccccdddd';
+        $option=OPENSSL_RAW_DATA;
+
+        //$content=file_get_contents("php://input");
+        echo '<pre>';print_r($_POST);echo '</pre>';echo "</br>";; 
+        //echo $content;die;
+        $enc_data=base64_decode($_POST['data']);
+        
+        //解密
+        $dec_data=openssl_decrypt($enc_data, $method, $key,$option,$iv);
+        echo "解密数据: ". $dec_data;
+    }
+    //非对称加密
+    public function rsa1(){
+        $data="长江长江我是黄河";
+        $content=file_get_contents(storage_path('keys/pub.key'));
+        $pub_key=openssl_get_publickey($content);
+        openssl_public_encrypt($data,$enc_data,$pub_key);
+
+        //var_dump($enc_data);echo "</br>";
+
+    }
+
+    public function sign1(Request $request){
+        $key="1911api";
+
+        //接收数据
+        $data=$request->get('data');
+        $sign=$request->get('sign');    //接收到的签名
+        $sign_str1=sha1($data.$key);
+        if($sign_str1==$sign){
+            echo "验签成功";
+        }else{
+            echo "验签失败";
+        }
+
+    }
+    public function sign2(){
+        $data="1911api";
+        
+    }
+
+
 
 }
