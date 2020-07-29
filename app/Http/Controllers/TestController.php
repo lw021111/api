@@ -148,14 +148,16 @@ class TestController extends Controller
     }
     public function return(){
 
-<<<<<<< HEAD
     }
-    public function notify(){
 
-=======
+    public function notify(){}
+
+
     public function testpay(){
         return view("pay");
     }
+
+    
     public function pay(Request $request)
     {
         $oid = $request->get('oid');
@@ -206,6 +208,8 @@ class TestController extends Controller
         return redirect($url);
         //echo $url;
     }
+
+
     protected function sign($data)
     {
 //        if ($this->checkEmpty($this->rsaPrivateKeyFilePath)) {
@@ -229,7 +233,6 @@ class TestController extends Controller
         openssl_free_key($res);
         $sign = base64_encode($sign);
         return $sign;
->>>>>>> 支付宝支付
     }
 
 
