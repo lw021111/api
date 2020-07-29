@@ -29,11 +29,16 @@ Route::get("/user/center","LoginController@center")->middleware('verify.token','
 
 Route::get("/goods","TestController@goods");
 
-Route::get("/test1","TestController@test1")->middleware('count');
+Route::get("/test1","TestController@test1");
 Route::get("/test/aes1","TestController@aes1");
 Route::any('/test/dec','TestController@dec');
 Route::any('/test/rsa1','TestController@rsa1');
 Route::any('/test/sign1','TestController@sign1');
+<<<<<<< HEAD
 Route::any('return','TestController@return');
 Route::any('notify','TestController@notify');
 
+=======
+Route::any('/test/pay','TestController@testpay');
+Route::get('/pay','TestController@pay');
+>>>>>>> 支付宝支付
