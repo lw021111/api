@@ -34,3 +34,6 @@ Route::get("/test/aes1","TestController@aes1");
 Route::any('/test/dec','TestController@dec');
 Route::any('/test/rsa1','TestController@rsa1');
 Route::any('/test/sign1','TestController@sign1');
+Route::any('return','TestController@return');
+Route::any('notify','TestController@notify');
+

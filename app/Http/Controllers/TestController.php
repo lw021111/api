@@ -134,7 +134,12 @@ class TestController extends Controller
         $data="1911api";
         
     }
+    public function return(){
 
+    }
+    public function notify(){
+
+    }
 
 
 }
