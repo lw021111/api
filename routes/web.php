@@ -23,7 +23,7 @@ Route::any("/test2","TestController@test2");
 
 Route::get("/test/hash1","TestController@hash1");
 
-Route::post("/user/reg","LoginController@reg");
+Route::get("/user/reg","LoginController@reg");
 Route::post("/user/login","LoginController@login");
 Route::get("/user/center","LoginController@center")->middleware('verify.token','count');//个人中心
 
@@ -38,3 +38,21 @@ Route::any('return','TestController@return');
 Route::any('notify','TestController@notify');
 Route::any('/test/pay','TestController@testpay');
 Route::get('/pay','TestController@pay');
+
+Route::prefix('class')->group(function(){
+	Route::get('create','ClassesController@create');
+	Route::post('createdo','ClassesController@createdo');
+	Route::any('index','ClassesController@index');
+	Route::any('del/{id}','ClassesController@del');
+	Route::any('edit/{id}','ClassesController@edit');
+	Route::any('update/{id}','ClassesController@update');
+});
+
+Route::prefix('student')->group(function(){
+	Route::get('create','StudentController@create');
+	Route::post('createdo','StudentController@createdo');
+	Route::any('index','StudentController@index');
+	Route::any('del/{id}','StudentController@del');
+	Route::any('edit/{id}','StudentController@edit');
+	Route::any('update/{id}','StudentController@update');
+});
